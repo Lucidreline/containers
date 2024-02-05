@@ -1,25 +1,36 @@
 .container-card {
-    width: 10rem;
+    width: 15rem;
     border: rgb(82, 137, 239) solid;
     border-radius: 5px;
-    padding: 0.5rem;
 
-    .container-name {
-        font-size: 1rem;
-    }
 
-    hr {
-        width: 75%;
-        margin-left: 0.1rem;
-        margin-bottom: 0.5rem;
-        margin-top: 0.1rem;
+
+
+
+    .card-top {
+        margin: 0.5rem;
+
+        .container-name {
+            font-size: 1rem;
+        }
+
+        hr {
+            width: 75%;
+            margin-bottom: 0.5rem;
+            margin-top: 0.1rem;
+        }
     }
 
     .card-image {
-        height: 2rem;
+        height: 7.5rem;
         width: 100%;
-        border: green dotted;
         background-position: center;
         background-size: cover;
+        border-radius: 0 0 4px 4px;
+    }
+
+    &:hover {
+        transform: scale(1.025);
+        transition: 1s;
     }
 }
