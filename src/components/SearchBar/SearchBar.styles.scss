@@ -1,0 +1,43 @@
+.search-bar-wrapper {
+    display: flex;
+
+    #search-bar {
+        height: 2.5rem;
+        padding: 0 1rem;
+        border: black solid;
+        border-right: none;
+        border-radius: 5px 0 0 5px;
+
+        // removes the x from the search bar
+        &::-webkit-search-decoration,
+        &::-webkit-search-cancel-button,
+        &::-webkit-search-results-button,
+        &::-webkit-search-results-decoration {
+            display: none;
+        }
+
+        ;
+
+        &:focus {
+            outline: none; // stops the border from going bold when clicking
+        }
+    }
+
+    .search-icon-wrapper {
+        height: 2.5rem;
+        width: 3rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(82, 137, 239);
+        border: black solid;
+        border-left: none;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+
+        .awesome-icon {
+            color: white;
+        }
+    }
+
+}
