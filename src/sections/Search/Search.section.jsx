@@ -10,6 +10,8 @@ const Search = () => {
                 <SearchBar />
             </div>
             <ItemSearchResult />
+            <ItemSearchResult />
+            <ItemSearchResult />
         </div>
     )
 }
