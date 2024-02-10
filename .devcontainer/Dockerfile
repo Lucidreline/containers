@@ -1,2 +1,2 @@
-FROM node:18-alpine3.18
+FROM node:16-alpine
 RUN npm i -g prettier
