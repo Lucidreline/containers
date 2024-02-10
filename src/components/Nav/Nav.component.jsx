@@ -7,8 +7,8 @@ const Nav = () => {
     return (
         <div className="nav">
             <ul className="nav-list">
-                <Link to='search' className='nav-item' key='search'>Browse</Link>
-                <Link to='/' className='nav-item' key='search'>Containers</Link>
+                <Link to='search' className='nav-item' >Browse</Link>
+                <Link to='/' className='nav-item' >Containers</Link>
             </ul>
         </div>
     )

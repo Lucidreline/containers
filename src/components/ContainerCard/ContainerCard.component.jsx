@@ -2,12 +2,12 @@ import React from 'react'
 import './ContainerCard.styles.scss'
 import { Link } from 'react-router-dom'
 
-const ContainerCard = () => {
+const ContainerCard = ({containerId}) => {
     return (
-        <Link>
+        <Link to={`/container/${containerId}`}>
         <div className="container-card">
             <div className="card-top">
-                <h3 className="container-name">Container A</h3>
+                <h3 className="container-name">Container {containerId}</h3>
                 <hr />
                 <span className='card-description'>Tools and Outdoors</span>
             </div>
