@@ -1,19 +1,22 @@
 import React from 'react'
 import './ContainerCard.styles.scss'
+import { Link } from 'react-router-dom'
 
 const ContainerCard = () => {
     return (
+        <Link>
         <div className="container-card">
             <div className="card-top">
                 <h3 className="container-name">Container A</h3>
                 <hr />
-                <span>Tools and Outdoors</span>
+                <span className='card-description'>Tools and Outdoors</span>
             </div>
             <div className="card-bottom">
                 <div className="card-image" style={{ backgroundImage: `url(https://favim.com/pd/p/orig/2019/02/25/shrek-cringe-funny-Favim.com-6942809.jpg)` }}></div>
             </div>
 
         </div>
+        </Link>
     )
 }
 
