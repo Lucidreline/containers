@@ -12,21 +12,6 @@ import {
 const Homepage = () => {
     const [currentSection, setCurrentSection] = useState('search ')
 
-    let section = <Containers />
-    switch (currentSection) {
-        case 'containers':
-            section = <Containers />
-            break;
-
-        case 'search':
-            section = <Search />
-            break;
-
-        default:
-            section = <Containers />
-            break;
-    }
-
     return (
         <div className="homepage">
             <Router>
@@ -35,11 +20,10 @@ const Homepage = () => {
                     <Routes>
                         <Route path="/Search" element={<Search/>}>
                         </Route>
-                        <Route path="/Containers" element={<Containers/>}>
+                        <Route path="/" element={<Containers/>}>
                         </Route>
                     </Routes>
                 </div>
-
             </Router>
         </div>
     )
