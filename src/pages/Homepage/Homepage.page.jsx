@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Homepage.styles.scss'
 import Nav from '../../components/Nav/Nav.component'
 import Containers from '../../sections/Containers/Containers.section'
@@ -10,8 +10,6 @@ import {
   } from "react-router-dom";
 
 const Homepage = () => {
-    const [currentSection, setCurrentSection] = useState('search ')
-
     return (
         <div className="homepage">
             <Router>
