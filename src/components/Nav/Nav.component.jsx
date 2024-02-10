@@ -1,14 +1,15 @@
 import React from 'react'
 import './Nav.styles.scss'
+import { Link } from 'react-router-dom'
 
-const navItems = ['Search', 'Browse']
+const navItems = ['Search', 'Containers']
 
 const Nav = () => {
     return (
         <div className="nav">
             <ul className="nav-list">
                 {navItems.map(item => (
-                    <li key={item} className="nav-item">{item}</li>
+                    <Link to={`/${item}`} className='nav-item' key={item}>{item}</Link>
                 ))}
             </ul>
         </div>
