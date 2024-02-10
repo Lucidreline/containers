@@ -7,7 +7,8 @@ import {
     BrowserRouter as Router,
     Route,
     Routes
-  } from "react-router-dom";
+} from "react-router-dom";
+import Container from '../../sections/Container/Container.section'
 
 const Homepage = () => {
     return (
@@ -16,10 +17,11 @@ const Homepage = () => {
                 <Nav />
                 <div className="section-wrapper">
                     <Routes>
-                        <Route path="/Search" element={<Search/>}>
+                        <Route path="/Search" element={<Search />}>
                         </Route>
-                        <Route path="/" element={<Containers/>}>
+                        <Route path="/" element={<Containers />}>
                         </Route>
+                        <Route path="/container/:id" element={<Container />}></Route>
                     </Routes>
                 </div>
             </Router>
