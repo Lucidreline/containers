@@ -1,0 +1,18 @@
+.nav {
+    margin-top: 1rem;
+
+    .nav-list {
+        display: flex;
+        justify-content: space-around;
+        width: 75%;
+        margin: auto;
+
+        .nav-item {
+            list-style: none;
+            text-align: center;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+    }
+}

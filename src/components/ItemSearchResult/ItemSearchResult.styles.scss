@@ -1,0 +1,14 @@
+.item-search-result {
+    height: 3rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    .item-result-info {
+        font-size: 1rem;
+        padding: 0 2rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+    }
+}
