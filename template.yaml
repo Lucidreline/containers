@@ -14,7 +14,7 @@ Resources:
   getAllItemsFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/get-all-items.getAllItemsHandler
+      Handler: src/handlers/items/get-all-items.getAllItemsHandler
       Runtime: nodejs18.x
       Architectures:
       - x86_64
@@ -69,7 +69,7 @@ Resources:
   getByIdFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/get-by-id.getByIdHandler
+      Handler: src/handlers/items/get-item-by-id.getItemByIdHandler
       Runtime: nodejs18.x
       Architectures:
       - x86_64
@@ -150,7 +150,7 @@ Resources:
   putItemFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Handler: src/handlers/put-item.putItemHandler
+      Handler: src/handlers/items/put-item.putItemHandler
       Runtime: nodejs18.x
       Architectures:
       - x86_64
