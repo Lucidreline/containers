@@ -1,0 +1,4 @@
+{
+    "httpMethod": "POST",
+    "body": "{\"id\": 1,\"photo\": \"some cool picture\", \"items\": [5, 6, 7]}"
+}
