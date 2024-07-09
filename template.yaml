@@ -34,7 +34,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /
+            Path: /items
             Method: GET
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -62,7 +62,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /
+            Path: /containers
             Method: GET
 
   # This is a Lambda function config associated with the source code: get-by-id.js
@@ -89,7 +89,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /{id}
+            Path: /items/{id}
             Method: GET
 
   getContainerByIdFunction:
@@ -115,7 +115,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /{id}
+            Path: /containers/{id}
             Method: GET
   # Each Lambda function is defined by properties:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -143,7 +143,7 @@ Resources:
           Api:
             Type: Api
             Properties:
-              Path: /
+              Path: /containers
               Method: POST
 
   # This is a Lambda function config associated with the source code: put-item.js
@@ -170,7 +170,7 @@ Resources:
         Api:
           Type: Api
           Properties:
-            Path: /
+            Path: /items
             Method: POST
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
