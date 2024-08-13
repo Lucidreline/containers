@@ -43,11 +43,11 @@ Resources:
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
-          TableName: !Ref ItemTable
+          TableName: !Ref ItemsTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
-          TABLE_NAME: !Ref ItemTable
+          TABLE_NAME: !Ref ItemsTable
       Events:
         Api:
           Type: Api
@@ -71,11 +71,11 @@ Resources:
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
-          TableName: !Ref ContainerTable
+          TableName: !Ref ContainersTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
-          TABLE_NAME: !Ref ContainerTable
+          TABLE_NAME: !Ref ContainersTable
       Events:
         Api:
           Type: Api
@@ -98,11 +98,11 @@ Resources:
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
-          TableName: !Ref ItemTable
+          TableName: !Ref ItemsTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
-          TABLE_NAME: !Ref ItemTable
+          TABLE_NAME: !Ref ItemsTable
       Events:
         Api:
           Type: Api
@@ -124,11 +124,11 @@ Resources:
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
-          TableName: !Ref ContainerTable
+          TableName: !Ref ContainersTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
-          TABLE_NAME: !Ref ContainerTable
+          TABLE_NAME: !Ref ContainersTable
       Events:
         Api:
           Type: Api
@@ -152,11 +152,11 @@ Resources:
         Policies:
           # Give Create/Read/Update/Delete Permissions to the SampleTable
         - DynamoDBCrudPolicy:
-            TableName: !Ref ContainerTable
+            TableName: !Ref ContainersTable
         Environment:
           Variables:
             # Make table name accessible as environment variable from function code during execution
-            TABLE_NAME: !Ref ContainerTable
+            TABLE_NAME: !Ref ContainersTable
         Events:
           Api:
             Type: Api
@@ -179,11 +179,11 @@ Resources:
       Policies:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
-          TableName: !Ref ItemTable
+          TableName: !Ref ItemsTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
-          TABLE_NAME: !Ref ItemTable
+          TABLE_NAME: !Ref ItemsTable
       Events:
         Api:
           Type: Api
@@ -194,7 +194,7 @@ Resources:
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
   # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
-  ItemTable:
+  ItemsTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
@@ -204,7 +204,7 @@ Resources:
         ReadCapacityUnits: 2
         WriteCapacityUnits: 2
 
-  ContainerTable:
+  ContainersTable:
     Type: AWS::Serverless::SimpleTable
     Properties:
       PrimaryKey:
