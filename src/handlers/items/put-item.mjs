@@ -3,6 +3,7 @@
 // Create a DocumentClient that represents the query to add an item
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
+import { v4 as uuidv4 } from 'uuid';
 const client = new DynamoDBClient({});
 let ddbDocClient = DynamoDBDocumentClient.from(client);
 
@@ -28,18 +29,23 @@ export const putItemHandler = async (event) => {
 
     // Get id and name from the body of the request
     const body = JSON.parse(event.body);
-    const id = body.id;
+    const id = uuidv4();
     const name = body.name;
+    const description = body.description
+    const container = body.container
+    const quantity = body.quantity
 
     // Creates a new item, or replaces an old item with a new item
     // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
     var params = {
         TableName : tableName,
-        Item: { id : id, name: name }
+        Item: { id : id, name: name, description: description, container: container, quantity: quantity }
     };
 
+    let data;
+
     try {
-        const data = await ddbDocClient.send(new PutCommand(params));
+        data = await ddbDocClient.send(new PutCommand(params));
         console.log("Success - item added or updated", data);
       } catch (err) {
         console.log("Error", err.stack);
@@ -47,7 +53,7 @@ export const putItemHandler = async (event) => {
 
     const response = {
         statusCode: 200,
-        body: JSON.stringify(body)
+        body: JSON.stringify(params.Item)
     };
 
     // All log statements are written to CloudWatch
