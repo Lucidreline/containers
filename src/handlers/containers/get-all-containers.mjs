@@ -20,6 +20,7 @@ const tableName = process.env.TABLE_NAME;
  * A simple example includes a HTTP get method to get all items from a DynamoDB table.
  */
 export const getAllContainersHandler = async (event) => {
+    console.log("LOG DIS")
     if (event.httpMethod !== 'GET') {
         throw new Error(`getAllItems only accept GET method, you tried: ${event.httpMethod}`);
     }
