@@ -165,3 +165,8 @@ Take a deep breath...
 ## Setup Database
 
 ## What to run
+```bash
+docker run --network containers -v containers_data:/home/dynamodblocal --name dynamoContainers -d -p 8000:8000 amazon/dynamodb-local -jar DynamoDBLocal.jar
+
+sam local start-api --docker-network containers
+```

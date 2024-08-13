@@ -41,8 +41,12 @@ export const getAllContainersHandler = async (event) => {
         console.log("Error", err);
     }
 
+    if(items == undefined)
+        items = []
+
     const response = {
         statusCode: 200,
+        
         body: JSON.stringify(items)
     };
 
