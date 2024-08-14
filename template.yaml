@@ -83,6 +83,31 @@ Resources:
             Path: /containers
             Method: GET
 
+  deleteAllContainersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/containers/delete-all-containers.deleteAllContainersHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP get method to get all items from
+        a DynamoDB table.
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref ContainersTable
+      Environment:
+        Variables:
+          # Make table name accessible as environment variable from function code during execution
+          TABLE_NAME: !Ref ContainersTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /containers/purge
+            Method: DELETE
 
   getContainerByIdFunction:
     Type: AWS::Serverless::Function
