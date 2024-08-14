@@ -52,6 +52,7 @@ export const putContainerHandler = async (event) => {
     const body = JSON.parse(event.body);
     const id = body.id;
     const items = []
+    const description = body.description
 
     if(await isIdUnique(id) == false){
         const nonUniqueMsg = `A container with the id ${id} already exists`
@@ -66,7 +67,7 @@ export const putContainerHandler = async (event) => {
     // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
     var params = {
         TableName : tableName,
-        Item: { id : id, items: items }
+        Item: { id : id, items: items, description: description }
     };
 
     try {
