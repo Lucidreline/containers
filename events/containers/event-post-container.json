@@ -1,4 +1,4 @@
 {
     "httpMethod": "POST",
-    "body": "{\"id\":\"1\",\"items\":[\"asdfasdfas\",\"lkasdfidui\",\"kasdfiasdfh\"],\"photoURL\":\"http://mannytheboi.edu\"}"
+    "body": "{\"id\":\"1\",\"items\":[\"asdfasdfas\",\"lkasdfidui\",\"kasdfiasdfh\"]}"
 }

@@ -83,32 +83,6 @@ Resources:
             Path: /containers
             Method: GET
 
-  # This is a Lambda function config associated with the source code: get-by-id.js
-  getByIdFunction:
-    Type: AWS::Serverless::Function
-    Properties:
-      Handler: src/handlers/items/get-item-by-id.getItemByIdHandler
-      Runtime: nodejs18.x
-      Architectures:
-      - x86_64
-      MemorySize: 128
-      Timeout: 100
-      Description: A simple example includes a HTTP get method to get one item by
-        id from a DynamoDB table.
-      Policies:
-        # Give Create/Read/Update/Delete Permissions to the SampleTable
-      - DynamoDBCrudPolicy:
-          TableName: !Ref ItemsTable
-      Environment:
-        Variables:
-          # Make table name accessible as environment variable from function code during execution
-          TABLE_NAME: !Ref ItemsTable
-      Events:
-        Api:
-          Type: Api
-          Properties:
-            Path: /items/{id}
-            Method: GET
 
   getContainerByIdFunction:
     Type: AWS::Serverless::Function
@@ -153,10 +127,14 @@ Resources:
           # Give Create/Read/Update/Delete Permissions to the SampleTable
         - DynamoDBCrudPolicy:
             TableName: !Ref ContainersTable
+        - LambdaInvokePolicy:
+            FunctionName:
+                !Ref getAllContainersFunction
         Environment:
           Variables:
             # Make table name accessible as environment variable from function code during execution
             TABLE_NAME: !Ref ContainersTable
+            MICROSERVICE_FUNCTION: !Ref getAllContainersFunction
         Events:
           Api:
             Type: Api
