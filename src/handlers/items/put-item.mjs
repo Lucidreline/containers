@@ -38,8 +38,23 @@ const getContainerById = async (id) => {
     return item
 }
 
-const updateContainerById = async (containerId, itemId) => {
+const updateContainerItemsList = async (container, itemId) => {
+    container.items.push(itemId)
 
+    var params = {
+        TableName: containersTableName,
+        Item: container
+    };
+
+    try {
+        await ddbDocClient.send(new PutCommand(params));
+        console.log("Success - item added or updated", data);
+    } catch (err) {
+        console.log("Error", err.stack);
+    }
+
+    console.log(`Updated container ${container.id}`, container)
+    
 }
 
 export const putItemHandler = async (event) => {
@@ -61,6 +76,7 @@ export const putItemHandler = async (event) => {
 
     const containerToLink = await getContainerById(containerId)
 
+    // stops the item from being added if the container does not exist
     if (containerToLink == undefined) {
         return {
             statusCode: 404,
@@ -68,7 +84,8 @@ export const putItemHandler = async (event) => {
         }
     }
 
-    console.log("container",) // returns undefined if no container exists with that id
+    updateContainerItemsList(containerToLink, id)
+
 
     // Creates a new item, or replaces an old item with a new item
     // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/DocumentClient.html#put-property
