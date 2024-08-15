@@ -51,7 +51,7 @@ export const putContainerHandler = async (event) => {
     // Get id and name from the body of the request
     const body = JSON.parse(event.body);
     const id = body.id;
-    const items = []
+    const items = body.items
     const description = body.description
 
     if(await isIdUnique(id) == false){
