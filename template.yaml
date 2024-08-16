@@ -150,6 +150,8 @@ Resources:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
           TableName: !Ref ContainersTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref ItemsTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
@@ -177,6 +179,8 @@ Resources:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
           TableName: !Ref ContainersTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref ItemsTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
@@ -265,6 +269,8 @@ Resources:
         # Give Create/Read/Update/Delete Permissions to the SampleTable
       - DynamoDBCrudPolicy:
           TableName: !Ref ItemsTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref ContainersTable
       Environment:
         Variables:
           # Make table name accessible as environment variable from function code during execution
