@@ -285,6 +285,35 @@ Resources:
   # Simple syntax to create a DynamoDB table with a single attribute primary key, more in
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlesssimpletable
 
+  moveItemByIds:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/items/move-item-by-ids.moveItemsByIdsHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP get method to get all items from
+        a DynamoDB table.
+      Policies:
+        # Give Create/Read/Update/Delete Permissions to the SampleTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref ContainersTable
+      - DynamoDBCrudPolicy:
+          TableName: !Ref ItemsTable
+      Environment:
+        Variables:
+          # Make table name accessible as environment variable from function code during execution
+          ITEMS_TABLE_NAME: !Ref ItemsTable
+          CONTAINERS_TABLE_NAME: !Ref ContainersTable
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /items/move/
+            Method: POST
+
   # DynamoDB table to store item: {id: &lt;ID&gt;, name: &lt;NAME&gt;}
   ItemsTable:
     Type: AWS::Serverless::SimpleTable
