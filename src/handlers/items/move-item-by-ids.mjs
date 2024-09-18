@@ -23,11 +23,8 @@ const getContainers = async (sendingContainerId, recievingContainerId) => {
     const sendingContainer = await getContainerById(sendingContainerId)
     const recievingContainer = await getContainerById(recievingContainerId)
 
-    console.log("sendingContainer")
-
     if (sendingContainer == undefined || recievingContainer == undefined)
         return undefined
-
 
     return {
         sendingContainer,
@@ -44,7 +41,6 @@ const getItemById = async (itemId) => {
 
     try {
         const data = await ddbDocClient.send(new GetCommand(params));
-        console.log("SEARCHING AND FOUND THIS", data.Item)
         const item = data.Item;
         return item
 
@@ -57,33 +53,17 @@ const getItemById = async (itemId) => {
 
 const getAllItemsByIdList = async (itemIdList) => {
     const itemList = []
-    console.log("this the items list yo", itemIdList)
 
     for (const itemId of itemIdList) {
-        console.log("yo adding in", itemId)
         itemList.push(await getItemById(itemId))
-        console.log("my current item list", itemList)
     }
 
-    console.log("you we done")
-    console.log('yo pls', itemList)
     return itemList
-
-
-
-
-
-
-
 }
 
 const changeItemContainerId = async (itemList, recievingContainerId) => {
-    console.log("is this even working?", itemList)
     itemList.forEach(async item => {
-        console.log("item container id", item.container)
         item.container = recievingContainerId
-        console.log("new id", item.container)
-
 
         const params = {
             TableName: itemsTableName,
@@ -140,10 +120,8 @@ const removeItemIds = async (itemIds, sendingContainer) => {
 }
 
 const addItemIds = async (itemIds, recievingContainer) => {
-    console.log("recieving has", recievingContainer.items, "so adding", itemIds)
     const combo = recievingContainer.items.concat(itemIds)
     recievingContainer.items = combo
-    console.log("result ", combo)
 
     const params = {
         TableName: containersTableName,
@@ -157,12 +135,6 @@ const addItemIds = async (itemIds, recievingContainer) => {
         console.log("Error", err.stack);
     }
 }
-
-
-
-
-
-
 
 
 export const moveItemsByIdsHandler = async (event) => {
@@ -183,7 +155,6 @@ export const moveItemsByIdsHandler = async (event) => {
         }
 
     const itemsList = await getAllItemsByIdList(itemIds)
-    console.log("pause... heres the item list", itemsList)
 
     changeItemContainerId(itemsList, containers.recievingContainer.id)
 
