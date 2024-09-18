@@ -25,10 +25,10 @@ const getContainers = async (sendingContainerId, recievingContainerId) => {
 
     console.log("sendingContainer")
 
-    if(sendingContainer == undefined || recievingContainer == undefined)
+    if (sendingContainer == undefined || recievingContainer == undefined)
         return undefined
 
-    
+
     return {
         sendingContainer,
         recievingContainer
@@ -44,6 +44,7 @@ const getItemById = async (itemId) => {
 
     try {
         const data = await ddbDocClient.send(new GetCommand(params));
+        console.log("SEARCHING AND FOUND THIS", data.Item)
         const item = data.Item;
         return item
 
@@ -54,14 +55,25 @@ const getItemById = async (itemId) => {
 
 }
 
-const getAllItemsByIdList = (itemIdList) => {
-    let itemList = []
+const getAllItemsByIdList = async (itemIdList) => {
+    const itemList = []
+    console.log("this the items list yo", itemIdList)
 
-    itemIdList.forEach(async itemId => {
+    for (const itemId of itemIdList) {
+        console.log("yo adding in", itemId)
         itemList.push(await getItemById(itemId))
-    })
+        console.log("my current item list", itemList)
+    }
 
+    console.log("you we done")
+    console.log('yo pls', itemList)
     return itemList
+
+
+
+
+
+
 
 }
 
@@ -167,21 +179,22 @@ export const moveItemsByIdsHandler = async (event) => {
     if (containers == undefined)
         return {
             statusCode: 404,
-            body: JSON.stringify({msg: "Something is wrong with the container Ids you gave me."})
+            body: JSON.stringify({ msg: "Something is wrong with the container Ids you gave me." })
         }
 
-    const itemsList = getAllItemsByIdList(itemIds)
+    const itemsList = await getAllItemsByIdList(itemIds)
+    console.log("pause... heres the item list", itemsList)
 
-    changeItemContainerId(itemsList, containers.recievingContainer)
+    changeItemContainerId(itemsList, containers.recievingContainer.id)
 
     removeItemIds(itemIds, containers.sendingContainer)
 
     addItemIds(itemIds, containers.recievingContainer)
 
-      const response = {
+    const response = {
         statusCode: 200,
         body: JSON.stringify(containers.recievingContainer)
-      };
+    };
 
     return response;
 }
